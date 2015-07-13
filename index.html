@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<link rel="stylesheet" href="style.css">
+	<style>
+
+		.navContainer {
+			display: none;
+		}
+
+		.main {
+			margin: 0 auto;
+			width: 500px;
+		}
+
+		.viewport {
+			overflow: hidden;
+			width: 500px;
+		}
+
+		.container {
+			width: 8500px;
+			position: relative;
+			transition: all 400ms ease-out 0s;
+		}
+
+		.chartContainer, .analysisContainer, .introContainer {
+			width: 500px;
+			display: inline-block;
+			text-align: center;
+			vertical-align: top;
+			background-color: #fee;
+		}
+		
+		.submit {
+			display: none;
+			position: relative;
+			top: -400px;
+		}
+		
+
+	</style>
+</head>
+<body>
+	<div class='main'>
+		<div class='navContainer'><div class='nav prev' onclick='prev()'></div><div class='nav next' onclick='next()'></div></div>
+		<div class='viewport'>
+			<div class='container'>
+				<form id='answers'>
+					<div class='introContainer'>
+						<p class='title'>Pie v Bar</p>
+						<p class='chartTitle'>Are Bar Charts Really Better Than Pie Charts?</p>
+						<p>The <b>Pie Chart</b>, whose first known instance occurs in 1801 in data visualization pioneer William Playfair's <i>Statistical Breviary</i>,
+						 	has been condemned by many leading data visualization experts such as Edward Tufte and 
+						 	<a href='http://www.perceptualedge.com/articles/visual_business_intelligence/save_the_pies_for_dessert.pdf'>Stephen Few</a>.  
+							These experts usually recommend using a bar Chart instead, and at least one <a href='https://web.cs.dal.ca/~sbrooks/csci4166-6406/seminars/readings/Cleveland_GraphicalPerception_Science85.pdf'>study</a> 
+							has shown that the elements used by pie charts (angles and area) are not easily consumed by viewers.</p>
+						<p>But do we really know that pie charts are better than bar charts? I can find no study using direct comparisons of pie charts to bar charts, and conclude that those who reject the use of
+							pie charts do so without the support of empirical data.</p>
+						<p>Therefore, I have created a simple test. Herein, interested people can make their own comparisons. This is not a formal study, and results are not saved, 
+							but it supplies some missing, first-hand information in the Pie Chart Wars.</p>
+						<p>The test consists of a series of eight pie charts and eight bar charts, randomly ordered with random values. Each pie chart has a corresponding bar chart using the same data. 
+							To test these charts, you are presented them one at a time, and enter your estimates of the values represented by each slice or bar, depending upon the chart type.</p>
+						<p>The values represent percentages, and per standard pie chart usage, add up to 100% for each chart.
+							Charts are either ordered and unordered, and the results for each type will be broken out in the analysis. Pie charts are also presented as either mono-hued or multi-hued,
+							and bar charts are presented with and without Y-axes.</p>
+						<p>When finished, click the Submit button to see how the charts fared. Each pair of charts will be presented with a comparison of your answers. An analysis is presented at the end.</p>
+						<p>Remember, it is not you that is being tested. The charts are being tested. So use them as you would other charts: Glance at them, then input the values you think they represent.</p>
+						<p>If you have questions or comments, please send them to <a href='mailto:paradox@steve.ro'>me.</a></p>
+						<div class='button begin'><button id='begin' form='none' onclick='next()'>Begin</button></div>
+					</div><div class='chartContainer' id='id0'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id1'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id2'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id3'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id4'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id5'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id6'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id7'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id8'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id9'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id10'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id11'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id12'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id13'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id14'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div><div class='chartContainer' id='id15'>
+						<div class='chartTitle'>Pie: Ordered, Mono-hue</div>
+						<div class='chart'><svg width='400' height='250'/></div>
+						<div class='answers'></div>
+					</div>			
+				</form>
+			</div>
+			<div class='button submit'><button id='submit' form='answers' name='Submit'>Submit</button></div>
+		</div>
+	</div>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="chartlib.js"></script>
+	<script type="text/javascript">
+
+var margin = {top: 24, bottom: 20, left: 40, right: 40},
+	width = 400 - margin.left - margin.right,
+	height = 250 - margin.top - margin.bottom,
+	viewWidth = 500,
+	maxValueCnt = 9,
+	minValueCnt = 3;
+	
+var chartLib = new CHARTLIB(width, height, margin);
+	
+// randomize chart order
+var randomizedIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+randomizedIndices = shuffleArray(randomizedIndices);
+
+// random count of random values (summing to 1) for each pie/bar pair
+var tests = [];
+for (var i = 0, l = randomizedIndices.length*0.5; i < l; ++i) {
+	var values = [],
+		points = [];
+	var cnt = Math.ceil((maxValueCnt - minValueCnt) * Math.random()) + minValueCnt ;	// min <= value count <= max
+	
+	// random points on number line 0-1000, sorted
+	for (var j = 0; j < cnt - 1; ++j) {
+		var rand = 1000;
+		while (rand === 1000 || points.indexOf(rand) !== -1) {
+			rand = Math.round(Math.random()*1000);
+			rand = Math.max(rand, 0.1);
+		}
+		points.push(rand);
+	}
+	points = points.sort(function(a, b) { return a - b; });
+	points.push(1000);
+	
+	// intervals between points will sum to 100
+	values = points.map(function(point, k) {
+		var interval =  points[k] - ((k === 0) ? 0 : points[k-1]);
+		// divide by 10 to get single decimal point precision
+		var intervalStr = Math.round(interval).toString();
+		while (intervalStr.length < 3) {
+			intervalStr = '0' + intervalStr;
+		}
+		var value = parseFloat(intervalStr.substr(0, 2) + '.' + intervalStr.substr(2, 1));
+		return value;
+	});
+	
+	// last 4 comparisons are ordered
+	if (i > 3) {
+		values.sort(function(a, b) {
+			return b - a;
+		 });
+	}
+		
+	tests.push( [
+		values,
+		[],			// pie answers
+		[],			// bar answers
+	]);
+}
+
+$('.chartContainer').each(function(i, container) {
+	//container.id = 'id' + i;									// 'id' added because d3 selector does not like integer first character
+	var randomizedIndex = randomizedIndices[i];
+	var testIndex = (randomizedIndex > 7) ? randomizedIndex - 8 : randomizedIndex;
+	var title = ((isPie(randomizedIndex)) ? 'Pie: ' : 'Bar: ') + 
+		((isOrdered(testIndex)) ? 'Ordered, ' : 'Unordered, ') + 
+		((isPie(randomizedIndex)) ? ((isMono(testIndex)) ?'Mono-hue' : 'Multi-hue') : ((hasY(testIndex)) ? 'Y-Axis' : 'No Y-Axis'));
+	$(container).find('.chartTitle').html(title);
+	
+	var values = tests[testIndex][0];
+	var svg = d3.select(container).select('svg');
+	if (isPie(randomizedIndex)) {
+		chartLib.makePie(svg, values, isMono(testIndex));
+	} else {
+		chartLib.makeBar(svg, values, hasY(testIndex));
+	}
+	
+	var answerEl = $(container).find('.answers');
+	values.forEach(function(d, j) {
+		answerEl.append(
+			'<div class="answerContainer">' + 
+			'<input class="answer" id="id' + j + '" type="number"  min=0 max=99.9 step="0.1" value="0" name="' + randomizedIndex + '.' + j + '" tabindex="-1">' +
+			//'<input class="answer" id="id' + j + '" type="number" min=0 max=99.9 step="0.1" value="' + (((!isPie(randomizedIndex)) ? Math.ceil(d*1.1) : d)) + '" name="' + randomizedIndex + '.' + j + '" tabindex="-1">' +
+			'<p class="label">' + String.fromCharCode(65 + j) + '</p>' + 
+			'</div>'
+		);
+	});
+});
+	
+
+setTabs(1, 0);
+
+$('form#answers').on('submit', function() {
+	event.preventDefault();
+	
+	var valid = true;
+	$('.answer').each(function(i, el) {
+		if (!el.value || parseFloat(el.value) < 0.1 || parseFloat(el.value) > 99.9) {
+			valid = false;
+			$(el).addClass('invalid');
+		} else {
+			$(el).removeClass('invalid');
+		}
+	});
+	
+	if (valid) {
+		var answers = $('form#answers').serializeArray();
+	
+		answers.forEach(function(ansObj, i) {
+			answerMeta = ansObj.name.split('.');	// ranomizedIndex.valueIndex
+			var randomizedIndex = answerMeta[0];
+			var testIndex = (randomizedIndex > 7) ? randomizedIndex - 8 : randomizedIndex;			// bar charts start at index 8
+			var answerIndex = (isPie(answerMeta[0])) ? 1 : 2;										// index within test object for answers (test[n][1] = pie answers, test[n][2] = bar answers) 
+			tests[testIndex][answerIndex][answerMeta[1]] = +ansObj.value;
+		});
+	
+		var results = encodeURI(JSON.stringify(tests));
+		window.open('results.html?results=' + results,'_blank');
+	}
+});
+
+setNavStates(0);
+
+
+
+// get chart types based on index of test
+function isPie(randomIndex) {
+	return randomIndex < 8;
+}
+function isOrdered(testIndex) {
+	return testIndex > 3;
+}
+function hasY(testIndex) {
+	return testIndex % 2 !== 0;
+}
+function isMono(testIndex) {
+	return testIndex % 4 > 1;
+}
+
+// navigation
+function prev() {
+	var x = parseInt($('.container').css('margin-left'));
+	if (x <= -viewWidth) {
+		var current = -x/viewWidth - 1;
+		if (current === 0) {
+			$('.navContainer').css('display', 'none');
+			$('.button.submit').css('display', 'none');
+		}
+		setTabs(current, current-1);
+		$('.container').css('margin-left', (x + viewWidth) + 'px');
+	}
+	setNavStates(x + viewWidth);
+}
+function next() {
+	var x = parseInt($('.container').css('margin-left'));
+ 	if (x >= -(randomizedIndices.length - 1)*viewWidth) {
+		var current = -x/viewWidth - 1;
+		if (current === -1) {
+			$('.navContainer').css('display', 'block');
+			$('.button.submit').css('display', 'block');
+		}
+		setTabs(current, current+1);
+		$('.container').css('margin-left', (x - viewWidth) + 'px');
+	}
+	setNavStates(x - viewWidth);
+}
+function setNavStates(containerX) {
+	if (containerX >= 0) {
+		$('.nav.prev').addClass('inactive');
+	} else {
+		$('.nav.prev').removeClass('inactive');
+	}
+	if (containerX <= -(randomizedIndices.length - 1)*viewWidth) {
+		$('.nav.next').addClass('inactive');
+	} else {
+		$('.nav.next').removeClass('inactive');
+	}
+}
+
+// add tab indices for visible answer inputs and remove for invisibles
+function setTabs(current, next) {
+	$('.chartContainer#id' + current).find('.answer').each(function(i, el) {
+		$(el).attr('tabindex', -1);
+	});
+	$('.chartContainer#id' + next).find('.answer').each(function(i, el) {
+		$(el).attr('tabindex', i+1);
+	});
+}
+
+/**
+ * Randomize array element order in-place.
+ * Using Fisher-Yates shuffle algorithm.
+ */
+function shuffleArray(array) {
+	for (var i = array.length - 1; i > 0; i--) {
+		var j = Math.floor(Math.random() * (i + 1));
+		var temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+	return array;
+}
+
+	</script>
+</body>
+</html>

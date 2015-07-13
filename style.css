@@ -1,0 +1,125 @@
+html, body, h1, h2, h3, h4, ul, ol, li, p, a {
+	padding: 0;
+	border: 0;
+	margin: 0;
+  	font: 300 16px "Helvetica Neue";
+}
+		
+p {
+	text-align: justify;
+	margin: 10px 0 10px 0;
+}
+
+input {
+	width: 36px;
+}
+
+button {
+	background-color:#953919;	
+	-webkit-border-radius:2px;	
+	border-radius:2px;	
+	border:0;		
+	cursor:pointer;	
+	display:inline-block;
+	color:#ffffff;
+	font: 300 16px "Helvetica Neue";
+	padding:13px 27px;	
+	text-decoration:none;
+	text-align: right;
+}
+	
+button:hover {
+	background-color:#E2855C;
+}
+button:disabled {
+	background-color: #aaa;	
+	cursor: default;	
+}
+
+.title {
+	text-align: center;
+	font: 900 18px "Helvetica Neue";
+	margin: 20px 0 10px 0;
+}
+
+.chart {
+	width: 500px;
+	height: 260px;
+}
+
+.chartTitle {
+	text-align: center;
+	font: 600 16px "Helvetica Neue";
+	margin: 20px 0 20px 0;
+}
+
+.navContainer {
+	text-align: center;
+	position: absolute;
+	z-index: 10000;
+}
+
+.nav {
+	display: inline-block;
+	position: relative;
+	width: 30px;
+	height: 60px;
+}
+
+.nav.prev {
+	transform: translate(10px, 130px);
+	-webkit-transform: translate(10px, 130px);
+	background-image: url(img/prev.png);
+
+}
+.nav.next {
+	transform: translate(420px, 130px);
+	-webkit-transform: translate(420px, 130px);
+	background-image: url(img/next.png);
+}
+.nav:hover{
+	background-position: 0px 120px, center;
+}
+.nav.inactive{
+	background-position: 0px 60px, center;
+}
+
+.answerContainer {
+	display: inline-block;
+	margin: 0 5px 0 5px;
+}
+
+.answer.invalid {
+	border: 2px solid #faa;
+}
+
+.label {
+	font: 300 16px "Helvetica Neue";
+	margin: 0;
+	text-align: center;
+}
+
+.axis line, .axis path {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+
+.x.axis text {
+	font: 300 16px "Helvetica Neue";
+}
+.x.error.axis text {
+	text-shadow: 0 1px 0 #fff;
+	font: 300 10px "Helvetica Neue";
+}
+
+.y.axis text {
+	text-shadow: 0 1px 0 #fff;
+	font: 300 10px "Helvetica Neue";
+}
+
+.button {
+	text-align: right;
+	padding: 10px 10px 0 0;
+}

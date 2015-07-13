@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+	<link rel='stylesheet' href='style.css'>
+	<style>
+		
+		p {
+			text-align: justify;
+			margin: 10px 160px 10px 160px;
+		}
+	
+		ul {
+			margin: 0 0 40px 0;
+		}
+	
+		li {
+			display: inline-block;
+			position: relative;
+			top: 1.25em;
+		}
+		
+		.main {
+			margin: 0 auto;
+			width: 900px;
+		}
+
+		.viewport {
+			overflow: hidden;
+			width: 900px;
+		}
+
+		.container {
+			width: 9900px;
+			position: relative;
+			transition: all 400ms ease-out 0s;
+		}
+
+		.resultContainer, .analysisContainer {
+			width: 900px;
+			display: inline-block;
+			text-align: center;
+			vertical-align: top;
+		}
+
+		.nav.next {
+			transform: translate(820px, 130px);
+			-webkit-transform: translate(820px, 130px);
+		}
+		
+		.chart {
+			width: 900px;
+		}
+		
+		.resultsChart {
+			margin-top: 20px;
+		}
+		
+		.errorlabel {
+			font: 300 12px 'Helvetica Neue';
+		}
+
+		.error.axis text {
+			font: 300 10px 'Helvetica Neue';
+			text-shadow: 0 1px 0 #fff;
+		}
+		
+		.answers {
+			width: 800px;
+		}
+		
+		.answer {
+			padding: 0 3px 1px 3px;
+			border-bottom: 1px solid black;
+			margin: 0;
+			text-align: center;
+		}
+		
+		.compareValue {
+			stroke: #000;
+		}
+		
+		.seperator {
+			fill: none;
+			stroke: #ddd;
+			shape-rendering: crispEdges;
+		}
+		
+		.ttest {
+			margin: 10px 10px 10px 0;
+		}
+		
+		.ttest.tlabel {
+			width: 30%;
+			text-align: right;
+			font-style: bold;
+			margin: 10px 0 10px 0;
+		}
+		
+		.ttest.tvalue {
+			width: 10%;
+			text-align: center;
+		}
+		
+		.ttest.theader {
+			font: 600 16px 'Helvetica Neue';
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class='main'>
+		<div class='navContainer'><div class='nav prev' onclick='prev()'></div><div class='nav next' onclick='next()'></div></div>
+		<div class='viewport'>
+			<div class='container'>
+					<div class='resultContainer'>
+						<div class='title'>Pie: Ordered, Monochrome</div>
+						<div class='chart'><svg class='pieChart' width='400' height='250'></svg><svg class='barChart' width='400' height='250'></svg></div>
+						<div class='answers'></div>
+						<div><svg class='resultsChart'></svg></div>
+					</div><div class='resultContainer'>
+						<div class='title'>Pie: Ordered, Monochrome</div>
+						<div class='chart'><svg class='pieChart' width='400' height='250'></svg><svg class='barChart' width='400' height='250'></svg></div>
+						<div class='answers'></div>
+						<div><svg class='resultsChart'></svg></div>
+					</div><div class='resultContainer'>
+						<div class='title'>Pie: Ordered, Monochrome</div>
+						<div class='chart'><svg class='pieChart' width='400' height='250'></svg><svg class='barChart' width='400' height='250'></svg></div>
+						<div class='answers'></div>
+						<div><svg class='resultsChart'></svg></div>
+					</div><div class='resultContainer'>
+						<div class='title'>Pie: Ordered, Monochrome</div>
+						<div class='chart'><svg class='pieChart' width='400' height='250'></svg><svg class='barChart' width='400' height='250'></svg></div>
+						<div class='answers'></div>
+						<div><svg class='resultsChart'></svg></div>
+					</div><div class='resultContainer'>
+						<div class='title'>Pie: Ordered, Monochrome</div>
+						<div class='chart'><svg class='pieChart' width='400' height='250'></svg><svg class='barChart' width='400' height='250'></svg></div>
+						<div class='answers'></div>
+						<div><svg class='resultsChart'></svg></div>
+					</div><div class='resultContainer'>
+						<div class='title'>Pie: Ordered, Monochrome</div>
+						<div class='chart'><svg class='pieChart' width='400' height='250'></svg><svg class='barChart' width='400' height='250'></svg></div>
+						<div class='answers'></div>
+						<div><svg class='resultsChart'></svg></div>
+					</div><div class='resultContainer'>
+						<div class='title'>Pie: Ordered, Monochrome</div>
+						<div class='chart'><svg class='pieChart' width='400' height='250'></svg><svg class='barChart' width='400' height='250'></svg></div>
+						<div class='answers'></div>
+						<div><svg class='resultsChart'></svg></div>
+					</div><div class='resultContainer'>
+						<div class='title'>Pie: Ordered, Monochrome</div>
+						<div class='chart'><svg class='pieChart' width='400' height='250'></svg><svg class='barChart' width='400' height='250'></svg></div>
+						<div class='answers'></div>
+						<div><svg class='resultsChart'></svg></div>
+					</div><div class='analysisContainer'>
+						<div class='title'>Analysis: Error/Size Correlation</div>
+						<p>These charts plot relative error as a function of chart element size - angle for pie charts, and length for bar charts.</p>
+						<div class='chart'><svg class='pieUnorderedChart' width='400' height='250'></svg><svg class='barUnorderedChart' width='400' height='250'></svg></div>
+						<div class='chart'><svg class='pieOrderedChart' width='400' height='250'></svg><svg class='barOrderedChart' width='400' height='250'></svg></div>
+						<div class='chart'><svg class='pieAllChart' width='400' height='250'></svg><svg class='barAllChart' width='400' height='250'></svg></div>
+					</div><div class='analysisContainer'>
+						<div class='title'>Analysis: Repeated Measures t-Test</div>
+						<div class='chartTitle'>t-Test Analysis for Chart Tests</div>
+						<p class='paragraph'>Null hypothesis: The Mean Difference between errors for your pie chart answers and your bar chart answers will be 0, and therefore pie charts are perceived as accurately as bar charts.</p>
+						<p class='paragraph'>Alternate hypothesis: The Mean Difference between errors for your pie chart answers and your bar chart answers will be > 0, and therefore bar charts are perceived more accurately than pie charts.</p>
+						<p class='paragraph'>For determination of our hypotheses, a cutoff value = 0.1 is used.</p>
+						<ul>
+							<li class='ttest tlabel'></li><li class='ttest tvalue theader'>Unordered Charts</li><li class='ttest tvalue theader'>Ordered Charts</li><li class='ttest tvalue theader'>All Charts</li><br>
+							<li class='ttest tlabel'>Number of samples</li><li class='ttest tvalue unordered' id='sampleCount'></li><li class='ttest tvalue ordered' id='sampleCount'></li><li class='ttest tvalue all' id='sampleCount'></li><br>
+							<li class='ttest tlabel'>Degrees of Freedom</li><li class='ttest tvalue unordered' id='degreesOfFreedom'></li><li class='ttest tvalue ordered' id='degreesOfFreedom'></li><li class='ttest tvalue all' id='degreesOfFreedom'></li><br>
+							<li class='ttest tlabel'>Mean difference</li><li class='ttest tvalue unordered' id='meanDifference'></li><li class='ttest tvalue ordered' id='meanDifference'></li><li class='ttest tvalue all' id='meanDifference'></li><br>
+							<li class='ttest tlabel'>Mean difference sum of squares</li><li class='ttest tvalue unordered' id='sumSquares'></li><li class='ttest tvalue ordered' id='sumSquares'></li><li class='ttest tvalue all' id='sumSquares'></li><br>
+							<li class='ttest tlabel'>Estimated variance</li><li class='ttest tvalue unordered' id='estimatedVariance'></li><li class='ttest tvalue ordered' id='estimatedVariance'></li><li class='ttest tvalue all' id='estimatedVariance'></li><br>
+							<li class='ttest tlabel'>Standard deviation</li><li class='ttest tvalue unordered' id='standardDeviation'></li><li class='ttest tvalue ordered' id='standardDeviation'></li><li class='ttest tvalue all' id='standardDeviation'></li><br>
+							<li class='ttest tlabel'>Sampling distribution of the means</li><li class='ttest tvalue unordered' id='distributionOfMeans'></li><li class='ttest tvalue ordered' id='distributionOfMeans'></li><li class='ttest tvalue all' id='distributionOfMeans'></li><br>
+							<li class='ttest tlabel'>t (standard errors of the mean away from 0)</li><li class='ttest tvalue unordered' id='t'></li><li class='ttest tvalue ordered' id='t'></li><li class='ttest tvalue all' id='t'></li><br>
+							<li class='ttest tlabel'>Critical t value</li><li class='ttest tvalue unordered' id='criticalTValue'></li><li class='ttest tvalue ordered' id='criticalTValue'></li><li class='ttest tvalue all' id='criticalTValue'></li><br>
+						</ul>
+						<p class='paragraph' id='unorderedResult'></p>
+						<p class='paragraph' id='orderedResult'></p>
+						<p class='paragraph' id='allResult'></p>
+						<p class='paragraph chartTitle'>To share these results, copy the URL, which contains the test data.</p>
+						<p>If you have questions, comments or suggestions, please send them to <a href='mailto:paradox@steve.ro'>me.</a></p>
+					</div>
+			</div>
+		</div>
+	</div>	
+	<script src='http://d3js.org/d3.v3.min.js'></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+	<script src='chartlib.js'></script>
+	<script type='text/javascript'>
+
+var margin = {top: 24, bottom: 20, left: 40, right: 40},
+	width = 400 - margin.left - margin.right,
+	height = 250 - margin.top - margin.bottom,
+	viewWidth = 900;
+	
+var results = getURLParameter('results');
+results = JSON.parse(decodeURI(results));
+	
+var chartLib = new CHARTLIB(width, height, margin);
+
+// redraw charts; create error charts
+$('.resultContainer').each(function(i, container) {
+'use strict';
+	//container.id = 'id' + i;									// 'id' added because d3 selector does not like integer first character
+	var pieChartIndex = i*2;
+	var barChartIndex = i*2 + 1;
+	var title = ((isOrdered(i)) ? 'Ordered, ' : 'Unordered, ') + 
+		((isMono(i)) ? 'Monochrome' : 'Multichrome') +
+		' v ' +
+		((hasY(i)) ? 'Y-Axis' :'No Y-Axis');
+	$(container).find('.title').html(title);
+	
+	var values = results[i][0];
+	var pieSvg = d3.select(container).select('svg.pieChart');
+	var barSvg = d3.select(container).select('svg.barChart');
+	chartLib.makePie(pieSvg, values, isMono(i));
+	chartLib.makeBar(barSvg , values, hasY(i));
+	
+	// zip error sizes for error chart
+	var resultsSvg = d3.select(container).select('svg.resultsChart');
+	var answers = [];
+	values.forEach(function(d, k) {
+		answers.push(results[i][1][k]);
+		answers.push(results[i][2][k]);
+	});
+	var errors = [];
+	values.forEach(function(d, k) {
+		errors.push((Math.round(100*(Math.abs(results[i][1][k] - d))/d))/100);
+		errors.push((Math.round(100*(Math.abs(results[i][2][k] - d))/d))/100);
+	});
+	makeResultsCharts(resultsSvg, values, answers, errors);
+		
+	var answerEl = $(container).find('.answers');
+	values.forEach(function(d, j) {
+		answerEl.append('<div class="answerContainer"><p class="answer">' + d + '</p><p class="label">' + String.fromCharCode(65 + j) + '</p></div>');
+	});
+});
+
+
+// analysis: error/size correlation
+// concatenate values and errors from all tests
+var pieOrderedErrors = [],
+	barOrderedErrors = [],
+	pieUnorderedErrors = [],
+	barUnorderedErrors = [],
+	pieAllErrors = [],
+	barAllErrors = [];
+	
+results.forEach(function(test, i) {
+	test[0].forEach(function(d, j) {
+		var pieError = {value: 3.6*d, error: Math.abs(test[1][j] - d)/d};	// value as degrees of pie slice
+		var barError = {value: d, error: Math.abs(test[2][j] - d)/d};
+		if (isOrdered(i)) {
+			pieOrderedErrors.push(pieError);
+			barOrderedErrors.push(barError);
+		} else {
+			pieUnorderedErrors.push(pieError);
+			barUnorderedErrors.push(barError);
+		}
+		//pieErrors.push({value: 3.6*d, error: (Math.round(10*(Math.abs(test[1][i] - d))/d))/10});	// value as degrees of pie slice
+		//barErrors.push({value: d, error: (Math.round(10*(Math.abs(test[2][i] - d))/d))/10});
+		pieAllErrors.push(pieError);	// value as degrees of pie slice
+		barAllErrors.push(barError);
+	});
+});
+
+pieUnorderedErrors.sort(function(a, b) { return a.value - b.value; });
+barUnorderedErrors.sort(function(a, b) { return a.value - b.value; });
+pieOrderedErrors.sort(function(a, b) { return a.value - b.value; });
+barOrderedErrors.sort(function(a, b) { return a.value - b.value; });
+pieAllErrors.sort(function(a, b) { return a.value - b.value; });
+barAllErrors.sort(function(a, b) { return a.value - b.value; });
+	
+var errorSvg = d3.select('.analysisContainer').select('.pieUnorderedChart');
+makeErrorChart(errorSvg, pieUnorderedErrors, 'Unordered Pie Chart Errors');
+errorSvg = d3.select('.analysisContainer').select('.barUnorderedChart');
+makeErrorChart(errorSvg, barUnorderedErrors, 'Unordered Bar Chart Errors');
+	
+errorSvg = d3.select('.analysisContainer').select('.pieOrderedChart');
+makeErrorChart(errorSvg, pieOrderedErrors, 'Ordered Pie Chart Errors');
+errorSvg = d3.select('.analysisContainer').select('.barOrderedChart');
+makeErrorChart(errorSvg, barOrderedErrors, 'Ordered Bar Chart Errors');
+	
+errorSvg = d3.select('.analysisContainer').select('.pieAllChart');
+makeErrorChart(errorSvg, pieAllErrors, 'All Pie Chart Errors');
+errorSvg = d3.select('.analysisContainer').select('.barAllChart');
+makeErrorChart(errorSvg, barAllErrors, 'All Bar Chart Errors');
+
+d3.tsv('t_table_critical_values.tsv', function(ttable) {
+
+	// analysis: t-test all comparisons
+	var pieOrderedErrors = [],
+		barOrderedErrors = [],
+		pieUnorderedErrors = [],
+		barUnorderedErrors = [],
+		pieAllErrors = [],
+		barAllErrors = [];
+	
+	results.forEach(function(test, i) {
+		test[0].forEach(function(d, j) {
+			var pieError = (Math.abs(test[1][j] - d))/d;
+			var barError = (Math.abs(test[2][j] - d))/d;
+			if (isOrdered(i)) {
+				pieOrderedErrors.push(pieError);
+				barOrderedErrors.push(barError);
+			} else {
+				pieUnorderedErrors.push(pieError);
+				barUnorderedErrors.push(barError);
+			}
+			pieAllErrors.push(pieError);
+			barAllErrors.push(barError);
+		});
+	});
+	populateT(pieAllErrors, barAllErrors, 'all', ttable);
+	populateT(pieUnorderedErrors, barUnorderedErrors, 'unordered', ttable);
+	populateT(pieOrderedErrors, barOrderedErrors, 'ordered', ttable);
+});
+
+
+setNavStates(0);
+
+//DEV
+//	$('.container').css('margin-left', (-9*viewWidth) + 'px');
+//	setNavStates(-9*viewWidth);
+
+
+function populateT(before, after, category, ttable) {
+	var ttest = getTValue(before, after);
+	var cutoff = '0.1';
+	$('.' + category + '#sampleCount').html(ttest.sampleCnt);
+	$('.' + category + '#degreesOfFreedom').html(ttest.degreesOfFreedom);
+	$('.' + category + '#meanDifference').html(formatFloat(ttest.meanDifference, 4));
+	$('.' + category + '#sumSquares').html(formatFloat(ttest.sumSquares, 4));
+	$('.' + category + '#estimatedVariance').html(formatFloat(ttest.estimatedVariance, 4));
+	$('.' + category + '#standardDeviation').html(formatFloat(ttest.standardDeviation, 4));
+	$('.' + category + '#distributionOfMeans').html(formatFloat(ttest.distributionOfMeans, 4));
+	$('.' + category + '#t').html(formatFloat(ttest.t, 4));
+	$('.' + category + '#criticalTValue').html(ttable[ttest.degreesOfFreedom][cutoff]);
+	var result = 'This test suggests that bar charts ' + 
+		((ttest.t > ttable[ttest.degreesOfFreedom][cutoff]) ? 'ARE' : 'ARE NOT') +
+		' more accurately perceived then pie charts for ' +
+		category.toUpperCase() +
+		' charts.';
+	$('#' + category + 'Result').html(result);
+}
+	
+function getTValue(before, after) {
+	var sampleCnt = before.length;
+	var meanDifference = 0;
+	var sumSquares = 0;
+	for (var i = 0, l = sampleCnt; i < l; ++i) {
+		meanDifference += before[i] - after[i];
+	}
+	meanDifference /= sampleCnt;
+	for (i = 0; i < l; ++i) {
+		sumSquares += (before[i] - after[i] - meanDifference)*(before[i] - after[i] - meanDifference);
+	}
+	var estimatedVariance =  sumSquares/(sampleCnt - 1);
+	var standardDeviation = Math.sqrt(estimatedVariance);
+	var distributionOfMeans = standardDeviation/Math.sqrt(sampleCnt);
+	var t = meanDifference/distributionOfMeans;
+	return {
+		sampleCnt: sampleCnt, 
+		degreesOfFreedom: (sampleCnt - 1), 
+		meanDifference: meanDifference, 
+		sumSquares: sumSquares, 
+		estimatedVariance: estimatedVariance, 
+		standardDeviation: standardDeviation, 
+		distributionOfMeans: distributionOfMeans, 
+		t: t
+	};
+}
+
+		
+function makeErrorChart(svg, zippedErrors, title) {
+
+	var chartWidth = 300,
+		chartHeight = 200,
+		margin = {top:24, right: 30, bottom: 46, left: 30};
+		
+	var x = d3.scale.linear()
+		.range([0, chartWidth])
+		.domain(d3.extent(zippedErrors.map(function(obj) { return obj.value; })));
+
+	var y = d3.scale.linear()
+		.range([chartHeight, 0])
+		.domain(d3.extent(zippedErrors.map(function(obj) { return obj.error; })));
+
+	var xAxis = d3.svg.axis()
+		.scale(x)
+		.orient('bottom');
+
+	var yAxis = d3.svg.axis()
+		.scale(y)
+		.orient('left');
+		
+	// Color scale
+	var color = d3.scale.ordinal()
+		.range(['#E2855C', '#397BC3']);
+		
+	
+	// Specify the chart area and dimensions
+	svg.attr('width', margin.left + chartWidth + margin.right)
+		.attr('height', margin.top + chartHeight + margin.bottom);
+		
+	var errors = svg.append('g')
+		.attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+		
+	errors.append('text')
+		.attr('class', 'chartTitle')
+		//.attr('x', margin.left)
+		.attr('y', -12)
+		.text(title);
+
+	// Create bars
+	errors.selectAll('point')
+			.data(zippedErrors)
+		.enter().append('circle')
+			.attr('r', 2)
+			.attr('cx', function(d) { return x(d.value); })
+			.attr('cy', function(d) { return y(d.error); })
+			.style('fill', function(d) { return color(0); });
+	
+	// x-axis
+	svg.append('g')
+		.attr('class', 'x error axis')
+		.attr('transform', 'translate(' + margin.left + ', ' + (chartHeight + margin.top) + ')')
+		.call(xAxis);
+	
+	// y-axis
+	svg.append('g')
+		.attr('class', 'y axis')
+		.attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')')
+		.call(yAxis)
+		.append('text')
+			.attr('class', 'label')
+			.attr('transform', 'rotate(-90)')
+			.attr('y', 6)
+			.attr('dy', '.71em')
+			.style('text-anchor', 'end')
+			.text('Error');
+}
+
+
+		
+function makeResultsCharts(svg, actualValues, zippedAnswers, zippedErrors) {
+
+	var chartWidth = 300,
+		barHeight = 20,
+		margin = {top:24, right: 30, bottom: 46, left: 30},
+		groupSize = 2,
+		groupHeight = barHeight * groupSize,
+		groupGap = 10;
+		
+	// Color scale
+	var color = d3.scale.ordinal()
+		.range(['#E2855C', '#397BC3']);
+		
+	var chartHeight = barHeight * zippedAnswers.length + groupGap * actualValues.length;
+
+	var xAnswers = d3.scale.linear()
+		.domain([0, Math.max(getMaxOfArray(zippedAnswers), getMaxOfArray(actualValues))])
+		.range([0, chartWidth]);
+	
+	var xAnswersAxis = d3.svg.axis()
+		.scale(xAnswers)
+		.orient('bottom')
+		.ticks(10);
+
+	var y = d3.scale.linear()
+		.range([chartHeight + groupGap, 0]);
+
+	// Specify the chart area and dimensions
+	svg.attr('width', 2*(margin.left + chartWidth + margin.right))
+		.attr('height', margin.top + chartHeight + margin.bottom);
+		
+	var answers = svg.append('g')
+		.attr('transform', 'translate(0, ' + margin.top + ')');
+		
+	answers.append('text')
+		.attr('class', 'chartTitle')
+		.attr('x', margin.left)
+		.attr('y', -8)
+		.text('Your Answers');
+
+	// Create bars
+	var answerBar = answers.selectAll('g')
+		.data(zippedAnswers)
+		.enter().append('g')
+		.attr('transform', function(d, i) {
+			return 'translate(' + margin.left + ',' + (i * barHeight + groupGap * (0.5 + Math.floor(i/groupSize))) + ')';
+		});
+
+	// draw bars
+	answerBar.append('rect')
+		.attr('fill', function(d,i) { return color(i % groupSize); })
+		.attr('class', 'bar')
+		.attr('x', function(d) { return xAnswers(Math.min(0, d)); })
+		.attr('width', function(d) { return Math.abs(xAnswers(d) - xAnswers(0)); })
+		.attr('height', barHeight - 1);
+	
+	answerBar.append('line')
+		.attr('class', 'compareValue')
+		.attr('x1', function(d, i) { return Math.abs(xAnswers(actualValues[Math.floor(i/groupSize)]) - xAnswers(0)); })
+		.attr('x2', function(d, i) { return Math.abs(xAnswers(actualValues[Math.floor(i/groupSize)]) - xAnswers(0)); })
+		.attr('y1', 0)
+		.attr('y2', barHeight);
+
+	// Add value label in bar
+	answerBar.append('text')
+		.attr('class', 'errorlabel')
+		.attr('x', function(d, i) { return Math.max(xAnswers(actualValues[Math.floor(i/groupSize)]), xAnswers(d))  + ((d < 0) ? -4 : 4); })
+		.attr('y', barHeight / 2)
+		.attr('dy', '.35em')
+		//.attr('text-anchor', function(d) {  return (d < 0) ? 'end' : 'start'; })
+		.text(function(d) { return d; });
+
+	// Draw labels
+	answerBar.append('text')
+		.attr('class', 'axis')
+		.attr('x', function(d) { return -margin.left; })
+		.attr('y', groupHeight / 2)
+		.attr('dy', '.35em')
+		.text(function(d, i) { return (i % groupSize === 0) ? String.fromCharCode(65 + Math.floor(i/groupSize)) : ''; });
+
+	// Draw separators
+	answerBar.append('line')
+		.attr('class', 'seperator')
+		.attr('x1', -margin.left)
+		.attr('y1', groupHeight + groupGap/2)
+		.attr('x2', function(d, i) { return (i % groupSize === 0 && i !== zippedAnswers.length - 2) ? margin.left + chartWidth + margin.right : -margin.left; })
+		.attr('y2', groupHeight + groupGap/2);
+	
+	// x-axis
+	answers.append('g')
+		.attr('class', 'error axis')
+		.attr('transform', 'translate(' + margin.left + ', ' + chartHeight + ')')
+		.call(xAnswersAxis);
+	
+	// y-axis
+	answers.append('g')
+		.attr('class', 'axis')
+			.append('line')
+			.attr('x1', margin.left + xAnswers(0))
+			.attr('y1', 0)
+			.attr('x2', margin.left + xAnswers(0))
+			.attr('y2', chartHeight);
+			
+			
+		
+	
+	var xErrors = d3.scale.linear()
+		.domain([0, d3.extent(zippedErrors)[1]])
+		.range([0, chartWidth]);
+
+	var xErrorsAxis = d3.svg.axis()
+		.scale(xErrors)
+		.orient('bottom')
+		.ticks(10);
+		
+	var errors = svg.append('g')
+		.attr('transform', 'translate(' + (2*margin.left + chartWidth + margin.right) + ', ' + margin.top + ')');
+		
+	errors.append('text')
+		.attr('class', 'title')
+		.attr('y', -8)
+		.text('Relative Error');
+
+	// Create bars
+	var errorBar = errors.selectAll('g')
+		.data(zippedErrors)
+		.enter().append('g')
+		.attr('transform', function(d, i) {
+			return 'translate(0, ' + (i * barHeight + groupGap * (0.5 + Math.floor(i/groupSize))) + ')';
+		});
+
+	// draw bars
+	errorBar.append('rect')
+		.attr('fill', function(d,i) { return color(i % groupSize); })
+		.attr('class', 'bar')
+		.attr('x', function(d) { return xErrors(Math.min(0, d)); })
+		.attr('width', function(d) { return Math.abs(xErrors(d) - xErrors(0)); })
+		.attr('height', barHeight - 1);
+	
+	// Add value label in bar
+	errorBar.append('text')
+		.attr('class', 'errorlabel')
+		.attr('x', function(d, i) { return xErrors(d) + ((d < 0) ? -4 : 4); })
+		.attr('y', barHeight / 2)
+		.attr('dy', '.35em')
+		.attr('text-anchor', function(d) {  return (d < 0) ? 'end' : 'start'; })
+		.text(function(d) { return d; });
+
+	// Draw separators
+	errorBar.append('line')
+		.attr('class', 'seperator')
+		.attr('x1', -margin.left)
+		.attr('y1', groupHeight + groupGap/2)
+		.attr('x2', function(d, i) { return (i % groupSize === 0 && i !== zippedErrors.length - 2) ? margin.left + chartWidth + margin.right : -margin.left; })
+		.attr('y2', groupHeight + groupGap/2);
+	
+	// x-axis
+	errors.append('g')
+		.attr('class', 'error axis')
+		.attr('transform', 'translate(0, ' + chartHeight + ')')
+		.call(xErrorsAxis);
+	
+	// y-axis
+	errors.append('g')
+		.attr('class', 'axis')
+			.append('line')
+			.attr('x1', xErrors(0))
+			.attr('y1', 0)
+			.attr('x2', xErrors(0))
+			.attr('y2', chartHeight);
+			
+			
+			
+
+	// Draw legend
+	var legendOffset = 2*(margin.left + chartWidth + margin.right) - 210;
+	var legendData = [{color: color(0), label: 'Pie', offset: 0}, {color: color(1), label: 'Bar', offset: 53}, {color: '#000', label: 'Actual', offset: 107}];
+	var legend = svg.selectAll('.legend')
+			.data(legendData)
+		.enter().append('g')
+			.attr('transform', 'translate(' + margin.left + ', ' + (margin.top + chartHeight + margin.bottom - barHeight) + ')');
+
+	legend.append('rect')
+		.attr('width', function(d, i) { return (d.label === 'Actual'	) ? 1 : (barHeight - 1); })
+		.attr('height', barHeight - 1)
+		.attr('x', function(d, i) { return legendOffset + d.offset; })
+		.style('fill', function(d) { return d.color; }); 
+
+	legend.append('text')
+		.attr('x', function(d, i) { return legendOffset + (2 + d.offset + ((d.label === 'Actual'	) ? 4 : barHeight)); })
+		.attr('y', barHeight - 2)
+		.text(function (d) { return d.label; });
+
+}
+
+
+function isPie(randomIndex) {
+	return randomIndex < 8;
+}
+function isOrdered(testIndex) {
+	return testIndex > 3;
+}
+function hasY(testIndex) {
+	return testIndex % 2 !== 0;
+}
+function isMono(testIndex) {
+	return testIndex % 4 > 1;
+}
+
+function prev() {
+	var x = parseInt($('.container').css('margin-left'));
+	if (x <= -viewWidth) {
+		$('.container').css('margin-left', (x + viewWidth) + 'px');
+	}
+	setNavStates(x + viewWidth);
+}
+function next() {
+	var x = parseInt($('.container').css('margin-left'));
+	if (x >= -(results.length)*viewWidth) {
+		$('.container').css('margin-left', (x - viewWidth) + 'px');
+	}
+	setNavStates(x - viewWidth);
+}
+function setNavStates(containerX) {
+	if (containerX >= 0) {
+		$('.nav.prev').addClass('inactive');
+	} else {
+		$('.nav.prev').removeClass('inactive');
+	}
+	if (containerX <= -(results.length + 1)*viewWidth) {
+		$('.nav.next').addClass('inactive');
+	} else {
+		$('.nav.next').removeClass('inactive');
+	}
+}
+
+function formatFloat(x, decPt) {
+	var str = Math.round(Math.pow(10, decPt)*x).toString();
+	while (str.length < decPt) {
+		str = '0' + str;
+	}
+	var formatted = str.substring(0, str.length - decPt) + '.' + str.substring(str.length - decPt);
+	if (formatted.substring(0, 1) === '.') {
+		formatted = '0' + formatted;
+	}
+	if (formatted.substring(0, 2) === '-.') {
+		formatted = '-0' + formatted.substring(1);
+	}
+	return formatted;
+}
+
+function getMaxOfArray(numArray) {
+	return Math.max.apply(null, numArray);
+}
+	
+function getMinOfArray(numArray) {
+	return Math.min.apply(null, numArray);
+}
+
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,''])[1].replace(/\+/g, '%20'))||null;
+}
+
+	</script>
+</body>
+</html>
